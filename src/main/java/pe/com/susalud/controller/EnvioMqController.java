@@ -25,12 +25,25 @@ public class EnvioMqController {
 	@RequestMapping("/info")
 	public ResponseBean sendMqInfoAfiliado(
 
-			@RequestParam(defaultValue = "", name = "idMarca") String idMarca
+			@RequestParam(defaultValue = "", name = "codAfiliado") String codAfiliado,
+			@RequestParam(defaultValue = "", name = "descAfiliado") String descAfiliado,
+			@RequestParam(defaultValue = "", name = "dni") String dni,
+			@RequestParam(defaultValue = "", name = "tipoAfiliacion") String tipoAfiliacion,
+			@RequestParam(defaultValue = "", name = "codMotivoAfiliacion") String codMotivoAfiliacion,
+			@RequestParam(defaultValue = "", name = "descMotivoAfiliacion") String descMotivoAfiliacion,
+			@RequestParam(defaultValue = "", name = "doc") String doc
 
 	) {
 		ResponseBean response = null;
 		try {
 			AfiliadoRequestPayloadBean afiliadoBean = new AfiliadoRequestPayloadBean();
+			afiliadoBean.setCodAfiliado(codAfiliado);
+			afiliadoBean.setDescAfiliado(descAfiliado);
+			afiliadoBean.setDni(dni);
+			afiliadoBean.setTipoAfiliacion(tipoAfiliacion);
+			afiliadoBean.setCodMotivoAfiliacion(codMotivoAfiliacion);
+			afiliadoBean.setDescMotivoAfiliacion(descMotivoAfiliacion);
+			afiliadoBean.setDoc(doc);
 			response = envioMqService.sendMqInfoAfiliado(afiliadoBean);
 
 		} catch (Exception ex) {

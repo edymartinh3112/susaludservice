@@ -8,9 +8,7 @@ import pe.com.susalud.util.AfiliacionUtil;
 @Service
 public class Afiliacion997ServicesImpl implements Afiliacion997Services {
 	public void procesarTrama(String trama) throws Exception {
-		
-		
-		
+
 		AfiliacionUtil.procesarTrama997(trama);
 	}
 }

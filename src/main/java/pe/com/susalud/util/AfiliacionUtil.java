@@ -13,9 +13,10 @@ import java.util.Vector;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import pe.com.susalud.afiliacion.trama.Trama271Bean;
+import pe.com.susalud.afiliacion.trama.Trama997Bean;
 import pe.com.susalud.conection.ClsConnectionMQ;
-import pe.com.susalud.core.beans.Trama271Bean;
-import pe.com.susalud.core.beans.Trama997Bean;
+
 import pe.gob.susalud.jr.transaccion.susalud.bean.In271RegafiUpdate;
 import pe.gob.susalud.jr.transaccion.susalud.bean.In271RegafiUpdateAfiliacion;
 import pe.gob.susalud.jr.transaccion.susalud.bean.In271RegafiUpdateAfiliado;
