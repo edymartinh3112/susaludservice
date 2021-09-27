@@ -3,9 +3,11 @@ package pe.com.susalud.controller;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.com.susalud.beans.AfiliadoRequestPayloadBean;
@@ -21,9 +23,8 @@ public class EnvioMqController {
 	@Autowired
 	private EnvioMqService envioMqService;
 
-	@GetMapping
-	@RequestMapping("/info")
-	public ResponseBean sendMqInfoAfiliado(
+	@GetMapping(value = "/alta",produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseBean sendMqInfoAfiliado(
 
 			@RequestParam(defaultValue = "", name = "codAfiliado") String codAfiliado,
 			@RequestParam(defaultValue = "", name = "descAfiliado") String descAfiliado,
@@ -35,6 +36,7 @@ public class EnvioMqController {
 
 	) {
 		ResponseBean response = null;
+		LOGGER.info("sendMqInfoAfiliado INI");
 		try {
 			AfiliadoRequestPayloadBean afiliadoBean = new AfiliadoRequestPayloadBean();
 			afiliadoBean.setCodAfiliado(codAfiliado);
@@ -45,7 +47,25 @@ public class EnvioMqController {
 			afiliadoBean.setDescMotivoAfiliacion(descMotivoAfiliacion);
 			afiliadoBean.setDoc(doc);
 			response = envioMqService.sendMqInfoAfiliado(afiliadoBean);
+			LOGGER.info("sendMqInfoAfiliado FIN");
+		} catch (Exception ex) {
+			LOGGER.error(ex);
+		}
+		return response;
+	}
 
+	@GetMapping(value = "/test",produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody ResponseBean sendMqInfoAfiliadoTest(
+			@RequestParam(defaultValue = "", name = "codigo") String codAfiliado) {
+		ResponseBean response = null;
+		LOGGER.info("sendMqInfoAfiliado INI");
+		try {
+
+			response = new ResponseBean();
+			response.setCodigo("001");
+			response.setMensaje("respuesta satisfactoria");
+
+			LOGGER.info("sendMqInfoAfiliado FIN");
 		} catch (Exception ex) {
 			LOGGER.error(ex);
 		}
